@@ -2,6 +2,7 @@ package cn.bucheng.core.config;
 
 import cn.bucheng.core.template.RedisTemplateProxy;
 import cn.bucheng.core.template.StringRedisTemplateProxy;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -18,6 +19,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 public class RedisConfig {
 
     @Bean
+    @ConditionalOnClass(StringRedisTemplateProxy.class)
     @Primary
     public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
         StringRedisTemplate redisTemplate = new StringRedisTemplateProxy();
@@ -26,6 +28,7 @@ public class RedisConfig {
     }
 
     @Bean
+    @ConditionalOnClass(RedisTemplateProxy.class)
     @Primary
     public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplateProxy<Object, Object> redisTemplate = new RedisTemplateProxy<>();
