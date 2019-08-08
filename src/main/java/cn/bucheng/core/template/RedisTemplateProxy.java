@@ -13,8 +13,8 @@ import cn.bucheng.core.value.DefaultValueOperations;
  * @describe
  */
 public class RedisTemplateProxy<K, V> extends RedisTemplate<K, V> {
-    private volatile @Nullable
-    ValueOperations<K, V> valueOps;
+    @Nullable
+    private volatile ValueOperations<K, V> valueOps;
 
     @Override
     public <HK, HV> BoundHashOperations<K, HK, HV> boundHashOps(K key) {
